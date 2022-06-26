@@ -1,0 +1,57 @@
+#:kivy 2.0.0
+
+<LoginWindow>:
+    MDScreen:
+        #md_bg_color: []
+        MDCard:
+            orientation: 'vertical'
+            padding: "10dp"
+            spacing: '20dp'
+            pos_hint: {'center_x':0.5, 'center_y':0.5}
+            size_hint: (0.5, None)
+            height: login_page.height
+            radius: 12
+            MDBoxLayout:
+                id: login_page
+                orientation: "vertical"
+                spacing: "10dp"
+                adaptive_height: True
+                padding: "20dp", "20dp", "20dp", "20dp"
+                MDLabel:
+                    id: info
+                    text: 'Enter Credentials'
+                    halign: 'center'
+                    font_style: 'H4'
+                    adaptive_height: True
+                #MDSeparator:
+                Widget:
+                MDTextFieldRound:
+                    id: username
+                    hint_text: 'Username'
+                    icon_right: "account-circle"
+                    #size_hint_x: None
+                    #width: self.parent.width
+                    adaptive_height: True
+                    focus: True
+                    on_text_validate: password.focus = True
+                #MDSeparator:
+                Widget:
+                MDTextFieldRound:
+                    id: password
+                    hint_text: 'Password'
+                    icon_right: 'eye-off'
+                    password: True
+                    size_hint_x: 1
+                    #adaptive_height: True
+                    on_text_validate: root.validate_user()
+                #MDSeparator:
+                Widget:
+                MDRaisedButton:
+                    text: 'Login'
+                    text_color: 0,1,0,1
+                    halign: 'center'
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    size_hint_x: 1
+                    #daptive_height: True
+                    #on_press: root.validate_user()
+                    on_press: root.proceed()

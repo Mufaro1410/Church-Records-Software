@@ -1,0 +1,73 @@
+#:kivy 2.0.0
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<MainWindow>:
+    ScreenManager:
+        id: main_screen_manager
+        MDScreen:
+            id: login_screen
+            name: 'Login Screen'
+        MDScreen:
+            id: home_screen
+            name: 'Home Screen'
+
+<HomeWindow>:
+    MDBoxLayout:
+        orientation: "vertical"
+        #MDToolbar:
+        #    pos_hint: {"top": 1}
+        #    title: 'Inventory Management'
+        #    left_action_items: [['menu', lambda x: app.open_drawer()]]
+        #    right_action_items: [['dots-vertical']]
+        MDBoxLayout:
+            MDNavigationRail:
+                id: inventory_rail
+                md_bg_color: get_color_from_hex("#344954")
+                color_normal: get_color_from_hex("#718089")
+                color_active: get_color_from_hex("#f3ab44")
+                use_hover_behavior: True
+                hover_bg: 0, 0, 0, .2
+                use_title: True
+                icon: 'menu'
+                #icon_title: "logo.png"
+                text_title: "[b][color=#ffffff]Extend/Shrink[/color][/b]"
+                use_resizeable: True
+                #MDNavigationRailItem:
+                #    icon: "home"
+                #    text: "Home"
+                #    on_release: root.ids.home_screen_manager.current = 'Home Screen'
+                #    focus: True
+                MDNavigationRailItem:
+                    icon: "receipt"
+                    text: "Members"
+                    on_release: root.ids.home_screen_manager.current = 'Members Screen'
+                MDNavigationRailItem:
+                    icon: "table"
+                    text: "Services"
+                    on_release: root.ids.home_screen_manager.current = 'Services Screen'
+                MDNavigationRailItem:
+                    icon: "table"
+                    text: "Extras"
+                    on_release: root.ids.home_screen_manager.current = 'Extras Screen'
+                MDNavigationRailItem:
+                    icon: "table"
+                    text: "Users"
+                    on_release: root.ids.home_screen_manager.current = 'Users Screen'
+            ScreenManager:
+                id: home_screen_manager
+                #MDScreen:
+                #    id: home_screen
+                #    name: 'Home Screen'
+                MDScreen:
+                    id: members_screen
+                    name: 'Members Screen'
+                MDScreen:
+                    id: services_screen
+                    name: 'Services Screen'
+                MDScreen:
+                    id: extras_screen
+                    name: 'Extras Screen'
+                MDScreen:
+                    id: users_screen
+                    name: 'Users Screen'
+        
