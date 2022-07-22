@@ -1,18 +1,26 @@
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.list import OneLineAvatarListItem
 
-from view import login, members, services, extras
+from kivy.lang import Builder
+
+import os
+
+dirname = os.path.dirname(__file__)
+
+Builder.load_file(os.path.join(dirname, "view/main.kv"))
+
+from view import dashboard, login, members, services, sections, extras
 
 class HomeWindow(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        self.ids.dashboard_screen.add_widget(dashboard.DashboardWindow())
         self.ids.members_screen.add_widget(members.MembersWindow())
         self.ids.services_screen.add_widget(services.ServicesWindow())
         self.ids.extras_screen.add_widget(extras.ExtrasWindow())
-        #self.ids.users_screen.add_widget(users.UsersWindow())
+        #self.ids.sections_screen.add_widget(sections.SectionsWindow())
 
 class MainWindow(MDBoxLayout):
     def __init__(self, **kwargs):

@@ -1,0 +1,138 @@
+#:kivy 2.0.0
+
+<DashboardWindow>:
+    ScreenManager:
+        id: dashboard_screen_manager
+        DashboardMainWindow:
+
+<DashboardMainWindow>:
+    name: 'Dashboard Home'
+    MDBoxLayout:
+        orientation: "vertical"
+        MDToolbar:
+            pos_hint: {"top": 1}
+            title: 'St Peters Church'
+            #sleft_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Home Screen", "right")]]
+            right_action_items: [['dots-vertical']]
+        ScrollView:
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+                spacing: "20dp"
+                padding: "20dp", "20dp", "20dp", "20dp"
+                MDCard:
+                    orientation: "vertical"
+                    size_hint: .98, None
+                    height: member_status.height
+                    #focus_behavior: True
+                    #ripple_behavior: True
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    radius: 12
+                    MDBoxLayout:
+                        id: member_status
+                        orientation: "vertical"
+                        spacing: "10dp"
+                        adaptive_height: True
+                        padding: "20dp", "20dp", "20dp", "20dp"
+                        MDLabel:
+                            text: "Member Status"
+                            theme_text_color: "Primary"
+                            font_style: "H5"
+                            bold: True
+                            adaptive_height: True
+                        MDSeparator:
+                        MDList:
+                            id: member_status_list
+                        #MDFloatingActionButton:
+                        #    icon: "plus"
+                        #    anchor: "right"
+                        #    on_release: app.root.switch_screen("Add Member Status Screen", "left")
+                        #    pos_hint: {"center_x": .95, "center_y": .5}
+                        #    #md_bg_color: app.theme_cls.primary_color
+                MDCard:
+                    orientation: "vertical"
+                    size_hint: .98, None
+                    height: membership.height
+                    #focus_behavior: True
+                    #ripple_behavior: True
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    radius: 12
+                    MDBoxLayout:
+                        id: membership
+                        orientation: "vertical"
+                        spacing: "10dp"
+                        adaptive_height: True
+                        padding: "20dp", "20dp", "20dp", "20dp"
+                        MDLabel:
+                            text: "Membership"
+                            theme_text_color: "Primary"
+                            font_style: "H5"
+                            bold: True
+                            adaptive_height: True
+                        MDSeparator:
+                        MDList:
+                            id: membership_list
+                        #MDFloatingActionButton:
+                        #    icon: "plus"
+                        #    anchor: "right"
+                        #    on_release: app.root.switch_screen("Add Membership Screen", "left")
+                        #    pos_hint: {"center_x": .95, "center_y": .5}
+                        #    #md_bg_color: app.theme_cls.primary_color
+                MDCard:
+                    orientation: "vertical"
+                    size_hint: .98, None
+                    height: marital_status.height
+                    #focus_behavior: True
+                    #ripple_behavior: True
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    radius: 12
+                    MDBoxLayout:
+                        id: marital_status
+                        orientation: "vertical"
+                        spacing: "10dp"
+                        adaptive_height: True
+                        padding: "20dp", "20dp", "20dp", "20dp"
+                        MDLabel:
+                            text: "Marital Status"
+                            theme_text_color: "Primary"
+                            font_style: "H5"
+                            bold: True
+                            adaptive_height: True
+                        MDSeparator:
+                        MDList:
+                            id: marital_status_list
+                        #MDFloatingActionButton:
+                        #    icon: "plus"
+                        #    anchor: "right"
+                        #    on_release: app.root.switch_screen("Add Marital Status Screen", "left")
+                        #    pos_hint: {"center_x": .95, "center_y": .5}
+                        #    #md_bg_color: app.theme_cls.primary_color
+                MDCard:
+                    orientation: "vertical"
+                    size_hint: .98, None
+                    height: sections.height
+                    #focus_behavior: True
+                    #ripple_behavior: True
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    radius: 12
+                    MDBoxLayout:
+                        id: sections
+                        orientation: "vertical"
+                        spacing: "10dp"
+                        adaptive_height: True
+                        padding: "20dp", "20dp", "20dp", "20dp"
+                        MDLabel:
+                            text: "Users"
+                            theme_text_color: "Primary"
+                            font_style: "H5"
+                            bold: True
+                            adaptive_height: True
+                        MDSeparator:
+                        MDList:
+                            id: users_list
+                        MDFloatingActionButton:
+                            icon: "plus"
+                            anchor: "right"
+                            on_release: root.parent.parent.switch_screen("Add Users Screen", "left")
+                            pos_hint: {"center_x": .95, "center_y": .5}
+                            #md_bg_color: app.theme_cls.primary_color

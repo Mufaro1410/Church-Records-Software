@@ -56,8 +56,9 @@
                             bold: True
                             adaptive_height: True
                         MDSeparator:
-                        MDList:
-                            id: sections_list
+                        ScrollView:
+                            MDList:
+                                id: sections_list
                         MDFloatingActionButton:
                             icon: "plus"
                             anchor: "right"
@@ -87,12 +88,12 @@
                         MDSeparator:
                         MDList:
                             id: member_status_list
-                        #MDFloatingActionButton:
-                        #    icon: "plus"
-                        #    anchor: "right"
-                        #    on_release: app.root.switch_screen("Add Member Status Screen", "left")
-                        #    pos_hint: {"center_x": .95, "center_y": .5}
-                        #    #md_bg_color: app.theme_cls.primary_color
+                        MDFloatingActionButton:
+                            icon: "plus"
+                            anchor: "right"
+                            on_release: root.parent.parent.switch_screen("Add Member Status Screen", "left")
+                            pos_hint: {"center_x": .95, "center_y": .5}
+                            #md_bg_color: app.theme_cls.primary_color
                 MDCard:
                     orientation: "vertical"
                     size_hint: .98, None
@@ -116,12 +117,12 @@
                         MDSeparator:
                         MDList:
                             id: membership_list
-                        #MDFloatingActionButton:
-                        #    icon: "plus"
-                        #    anchor: "right"
-                        #    on_release: app.root.switch_screen("Add Membership Screen", "left")
-                        #    pos_hint: {"center_x": .95, "center_y": .5}
-                        #    #md_bg_color: app.theme_cls.primary_color
+                        MDFloatingActionButton:
+                            icon: "plus"
+                            anchor: "right"
+                            on_release: root.parent.parent.switch_screen("Add Membership Screen", "left")
+                            pos_hint: {"center_x": .95, "center_y": .5}
+                            #md_bg_color: app.theme_cls.primary_color
                 MDCard:
                     orientation: "vertical"
                     size_hint: .98, None
@@ -145,12 +146,12 @@
                         MDSeparator:
                         MDList:
                             id: marital_status_list
-                        #MDFloatingActionButton:
-                        #    icon: "plus"
-                        #    anchor: "right"
-                        #    on_release: app.root.switch_screen("Add Marital Status Screen", "left")
-                        #    pos_hint: {"center_x": .95, "center_y": .5}
-                        #    #md_bg_color: app.theme_cls.primary_color
+                        MDFloatingActionButton:
+                            icon: "plus"
+                            anchor: "right"
+                            on_release: root.parent.parent.switch_screen("Add Marital Status Screen", "left")
+                            pos_hint: {"center_x": .95, "center_y": .5}
+                            #md_bg_color: app.theme_cls.primary_color
                 MDCard:
                     orientation: "vertical"
                     size_hint: .98, None
@@ -191,7 +192,7 @@
             elevation: 10
             pos_hint: {"top": 1}
             left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
-            right_action_items: [['content-save']]
+            right_action_items: [['content-save', lambda x: root.create_section()]]
         ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
@@ -201,13 +202,13 @@
                 MDCard:
                     orientation: "vertical"
                     size_hint: .98, None
-                    height: sections_details.height
+                    height: member_details.height
                     #focus_behavior: True
                     #ripple_behavior: True
                     pos_hint: {"center_x": .5, "center_y": .5}
                     radius: 12
                     MDBoxLayout:
-                        id: sections_details
+                        id: member_details
                         orientation: "vertical"
                         spacing: "10dp"
                         adaptive_height: True
@@ -218,7 +219,7 @@
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
-                        #MDSeparator:
+                        MDSeparator:
                         MDTextField:
                             id: section_number
                             hint_text: "Section Number"
@@ -227,13 +228,13 @@
                             hint_text: "Area"
                         MDTextField:
                             id: section_leader
-                            hint_text: "Section Leader"
+                            hint_text: "Section Leader - Member ID"
                         MDTextField:
                             id: vice_section_leader
-                            hint_text: "Vice Section Leader"
+                            hint_text: "Vice Section Leader - Member ID"
                         MDTextField:
                             id: treasurer
-                            hint_text: "Treasurer"
+                            hint_text: "Treasurer - Member ID"
                         MDTextField:
                             id: number_of_families
                             hint_text: "Number of Families"
@@ -248,7 +249,7 @@
             elevation: 10
             pos_hint: {"top": 1}
             left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
-            right_action_items: [['delete'], ['content-save']]
+            right_action_items: [['delete', lambda x: root.delete_section_dialog()], ['content-save', lambda x: root.update_section()]]
         ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
@@ -258,13 +259,13 @@
                 MDCard:
                     orientation: "vertical"
                     size_hint: .98, None
-                    height: sections_details.height
+                    height: member_details.height
                     #focus_behavior: True
                     #ripple_behavior: True
                     pos_hint: {"center_x": .5, "center_y": .5}
                     radius: 12
                     MDBoxLayout:
-                        id: sections_details
+                        id: member_details
                         orientation: "vertical"
                         spacing: "10dp"
                         adaptive_height: True
@@ -275,7 +276,7 @@
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
-                        #MDSeparator:
+                        MDSeparator:
                         MDTextField:
                             id: section_number
                             hint_text: "Section Number"
@@ -284,13 +285,13 @@
                             hint_text: "Area"
                         MDTextField:
                             id: section_leader
-                            hint_text: "Section Leader"
+                            hint_text: "Section Leader - Member ID"
                         MDTextField:
                             id: vice_section_leader
-                            hint_text: "Vice Section Leader"
+                            hint_text: "Vice Section Leader - Member ID"
                         MDTextField:
                             id: treasurer
-                            hint_text: "Treasurer"
+                            hint_text: "Treasurer - Member ID"
                         MDTextField:
                             id: number_of_families
                             hint_text: "Number of Families"
@@ -327,18 +328,15 @@
                         adaptive_height: True
                         padding: "20dp", "20dp", "20dp", "20dp"
                         MDLabel:
-                            text: "Member Statuses"
+                            text: "Member Status"
                             theme_text_color: "Primary"
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
-                        #MDSeparator:
+                        MDSeparator:
                         MDTextField:
-                            id: full_member
-                            hint_text: "Full Member"
-                        MDTextField:
-                            id: probationer
-                            hint_text: "Probationer"
+                            id: status_name
+                            hint_text: "Member Status"
 
 <EditMemberStatusWindow>:
     name: 'Edit Member Status Screen'
@@ -372,7 +370,7 @@
                         adaptive_height: True
                         padding: "20dp", "20dp", "20dp", "20dp"
                         MDLabel:
-                            text: "Section Details"
+                            text: "Member Status"
                             theme_text_color: "Primary"
                             font_style: "H5"
                             bold: True
@@ -380,13 +378,11 @@
                         MDSeparator:
                         MDTextField:
                             id: id
-                            hint_text: "ID"
+                            hint_text: "Member ID"
+                            readonly: True
                         MDTextField:
-                            id: full_member
-                            hint_text: "Full Member"
-                        MDTextField:
-                            id: probationer
-                            hint_text: "Probationer"
+                            id: status_name
+                            hint_text: "Member Status"
 
 <AddMembershipWindow>:
     name: 'Add Membership Screen'
@@ -425,22 +421,10 @@
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
-                        #MDSeparator:
+                        MDSeparator:
                         MDTextField:
-                            id: mumc
-                            hint_text: "MUMC"
-                        MDTextField:
-                            id: rrw
-                            hint_text: "RRW"
-                        MDTextField:
-                            id: umyf
-                            hint_text: "UMYF"
-                        MDTextField:
-                            id: infants
-                            hint_text: "Infants"
-                        MDTextField:
-                            id: pastorial
-                            hint_text: "Pastorial"
+                            id: status_name
+                            hint_text: "Membership Status"
 
 <EditMembershipWindow>:
     name: 'Edit Membership Screen'
@@ -451,7 +435,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:rootparent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
             right_action_items: [['delete'], ['content-save']]
         ScrollView:
             MDBoxLayout:
@@ -482,22 +466,11 @@
                         MDSeparator:
                         MDTextField:
                             id: id
-                            hint_text: "ID"
+                            hint_text: "Membership ID"
+                            readonly: True
                         MDTextField:
-                            id: mumc
-                            hint_text: "MUMC"
-                        MDTextField:
-                            id: rrw
-                            hint_text: "RRW"
-                        MDTextField:
-                            id: umyf
-                            hint_text: "UMYF"
-                        MDTextField:
-                            id: infants
-                            hint_text: "Infants"
-                        MDTextField:
-                            id: pastorial
-                            hint_text: "Pastorial"
+                            id: status_name
+                            hint_text: "Membership Status"
 
 <AddMaritalStatusWindow>:
     name: 'Add Marital Status Screen'
@@ -531,27 +504,15 @@
                         adaptive_height: True
                         padding: "20dp", "20dp", "20dp", "20dp"
                         MDLabel:
-                            text: "Membership"
+                            text: "Marital Status"
                             theme_text_color: "Primary"
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
-                        #MDSeparator:
+                        MDSeparator:
                         MDTextField:
-                            id: mumc
-                            hint_text: "MUMC"
-                        MDTextField:
-                            id: rrw
-                            hint_text: "RRW"
-                        MDTextField:
-                            id: umyf
-                            hint_text: "UMYF"
-                        MDTextField:
-                            id: infants
-                            hint_text: "Infants"
-                        MDTextField:
-                            id: pastorial
-                            hint_text: "Pastorial"
+                            id: status_name
+                            hint_text: "Marital Status"
 
 <EditMaritalStatusWindow>:
     name: 'Edit Marital Status Screen'
@@ -562,7 +523,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:rootparent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
             right_action_items: [['delete'], ['content-save']]
         ScrollView:
             MDBoxLayout:
@@ -585,7 +546,7 @@
                         adaptive_height: True
                         padding: "20dp", "20dp", "20dp", "20dp"
                         MDLabel:
-                            text: "Membership"
+                            text: "Marital Status"
                             theme_text_color: "Primary"
                             font_style: "H5"
                             bold: True
@@ -593,22 +554,11 @@
                         MDSeparator:
                         MDTextField:
                             id: id
-                            hint_text: "ID"
+                            hint_text: "Marital Status ID"
+                            readonly: True
                         MDTextField:
-                            id: mumc
-                            hint_text: "MUMC"
-                        MDTextField:
-                            id: rrw
-                            hint_text: "RRW"
-                        MDTextField:
-                            id: umyf
-                            hint_text: "UMYF"
-                        MDTextField:
-                            id: infants
-                            hint_text: "Infants"
-                        MDTextField:
-                            id: pastorial
-                            hint_text: "Pastorial"
+                            id: status_name
+                            hint_text: "Marital Status"
 
 <AddUsersWindow>:
     name: 'Add Users Screen'
@@ -647,25 +597,16 @@
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
-                        #MDSeparator:
+                        MDSeparator:
                         MDTextField:
-                            id: section_number
-                            hint_text: "Section Number"
+                            id: username
+                            hint_text: "Username"
                         MDTextField:
-                            id: area
-                            hint_text: "Area"
+                            id: password
+                            hint_text: "Password"
                         MDTextField:
-                            id: section_leader
-                            hint_text: "Section Leader"
-                        MDTextField:
-                            id: vice_section_leader
-                            hint_text: "Vice Section Leader"
-                        MDTextField:
-                            id: treasurer
-                            hint_text: "Treasurer"
-                        MDTextField:
-                            id: number_of_families
-                            hint_text: "Number of Families"
+                            id: member_id
+                            hint_text: "Member ID"
 
 <EditUsersWindow>:
     name: 'Edit Users Screen'
@@ -704,22 +645,17 @@
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
-                        #MDSeparator:
+                        MDSeparator:
                         MDTextField:
-                            id: section_number
-                            hint_text: "Section Number"
+                            id: id
+                            hint_text: "User ID"
+                            readonly: True
                         MDTextField:
-                            id: area
-                            hint_text: "Area"
+                            id: username
+                            hint_text: "Username"
                         MDTextField:
-                            id: section_leader
-                            hint_text: "Section Leader"
+                            id: password
+                            hint_text: "Password"
                         MDTextField:
-                            id: vice_section_leader
-                            hint_text: "Vice Section Leader"
-                        MDTextField:
-                            id: treasurer
-                            hint_text: "Treasurer"
-                        MDTextField:
-                            id: number_of_families
-                            hint_text: "Number of Families"
+                            id: member_id
+                            hint_text: "Member ID"

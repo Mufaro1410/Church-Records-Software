@@ -18,18 +18,48 @@
             pos_hint: {"top": 1}
             #left_action_items: [['arrow-left', lambda x: app.root.switch_screen("Home Screen", "right")]]
             right_action_items: [['magnify']]
-        ScrollView:
-            MDList:
+        MDCard:
+            orientation: "vertical"
+            size_hint: 1, 1
+            #height: users.height
+            #focus_behavior: True
+            #ripple_behavior: True
+            pos_hint: {"center_x": .5, "center_y": .5}
+            #padding: "20dp", "20dp", "20dp", "20dp"
+            padding: dp(20)
+            elevation: 0
+            radius: 0
+            BoxLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                MDIconButton:
+                    icon: 'magnify'
+                MDTextField:
+                    id: search_field
+                    hint_text: 'Search Member'
+                    on_text: root.set_search_members(self.text, True)
+            RecycleView:
                 id: members_list
+                key_viewclass: 'viewclass'
+                key_size: 'height'
+                #pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+                RecycleBoxLayout:
+                    padding: dp(10)
+                    default_size: None, dp(48)
+                    default_size_hint: 1, None
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+                    callback: True
         MDFloatingActionButton:
             icon: "plus"
             anchor: "right"
-            on_release: root.parent.parent.switch_screen("Add Member Screen", "left")
+            on_release: root.parent.parent.switch_screen("Add Members Screen", "left")
             pos_hint: {"center_x": .95, "center_y": .5}
             #md_bg_color: app.theme_cls.primary_color
 
 <AddMembersWindow>:
-    name: 'Add Member Screen'
+    name: 'Add Members Screen'
     MDBoxLayout:
         orientation: "vertical"
         MDToolbar:
@@ -38,7 +68,7 @@
             elevation: 10
             pos_hint: {"top": 1}
             left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Members Screen", "right")]]
-            right_action_items: [['content-save']]
+            right_action_items: [['content-save', lambda x: root.create_member()]]
         ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
@@ -65,14 +95,14 @@
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
-                        #MDSeparator:
+                        MDSeparator:
+                        MDTextField:
+                            id: first_name
+                            hint_text: "First Name"
                         MDTextField:
                             id: surname
                             hint_text: "Surname"
                             on_focus: True
-                        MDTextField:
-                            id: first_name
-                            hint_text: "First Name"
                         MDTextField:
                             id: date_of_birth
                             hint_text: "Date of Birth"
@@ -83,10 +113,13 @@
                             id: contact_details
                             hint_text: "Contact Details"
                         MDTextField:
-                            id: physical_address
-                            hint_text: "Physical Address"
+                            id: email
+                            hint_text: "Email Address"
                         MDTextField:
-                            id: marital_status
+                            id: address
+                            hint_text: "Home Address"
+                        MDTextField:
+                            id: marital_status_id
                             hint_text: "Marital Status ID"
                         MDTextField:
                             id: member_status_id
@@ -99,7 +132,7 @@
                             hint_text: "Section ID"
 
 <EditMembersWindow>:
-    name: 'Edit Member Screen'
+    name: 'Edit Members Screen'
     MDBoxLayout:
         orientation: "vertical"
         MDToolbar:
@@ -108,7 +141,7 @@
             elevation: 10
             pos_hint: {"top": 1}
             left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Members Screen", "right")]]
-            right_action_items: [['delete'], ['content-save']]
+            right_action_items: [['delete', lambda x: root.delete_member_dialog()], ['content-save', lambda x: root.update_member()]]
         ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
@@ -140,12 +173,12 @@
                             hint_text: "ID"
                             readonly: True
                         MDTextField:
+                            id: first_name
+                            hint_text: "First Name"
+                        MDTextField:
                             id: surname
                             hint_text: "Surname"
                             on_focus: True
-                        MDTextField:
-                            id: first_name
-                            hint_text: "First Name"
                         MDTextField:
                             id: date_of_birth
                             hint_text: "Date of Birth"
@@ -156,10 +189,13 @@
                             id: contact_details
                             hint_text: "Contact Details"
                         MDTextField:
-                            id: physical_address
-                            hint_text: "Physical Address"
+                            id: email
+                            hint_text: "Email Address"
                         MDTextField:
-                            id: marital_status
+                            id: address
+                            hint_text: "Home Address"
+                        MDTextField:
+                            id: marital_status_id
                             hint_text: "Marital Status ID"
                         MDTextField:
                             id: member_status_id

@@ -18,9 +18,39 @@
             pos_hint: {"top": 1}
             #left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Home Screen", "right")]]
             right_action_items: [['magnify']]
-        ScrollView:
-            MDList:
+        MDCard:
+            orientation: "vertical"
+            size_hint: 1, 1
+            #height: users.height
+            #focus_behavior: True
+            #ripple_behavior: True
+            pos_hint: {"center_x": .5, "center_y": .5}
+            #padding: "20dp", "20dp", "20dp", "20dp"
+            padding: dp(20)
+            elevation: 0
+            radius: 0
+            BoxLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                MDIconButton:
+                    icon: 'magnify'
+                MDTextField:
+                    id: search_field
+                    hint_text: 'Search Services'
+                    on_text: root.set_search_services(self.text, True)
+            RecycleView:
                 id: services_list
+                key_viewclass: 'viewclass'
+                key_size: 'height'
+                #pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+                RecycleBoxLayout:
+                    padding: dp(10)
+                    default_size: None, dp(48)
+                    default_size_hint: 1, None
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+                    callback: True
         MDFloatingActionButton:
             icon: "plus"
             anchor: "right"
@@ -38,7 +68,7 @@
             elevation: 10
             pos_hint: {"top": 1}
             left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Services Screen", "right")]]
-            right_action_items: [['content-save']]
+            right_action_items: [['content-save', lambda x: root.create_service()]]
         ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
@@ -65,7 +95,7 @@
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
-                        #MDSeparator:
+                        MDSeparator:
                         MDTextField:
                             id: date
                             hint_text: "Date"
@@ -98,7 +128,7 @@
             elevation: 10
             pos_hint: {"top": 1}
             left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Services Screen", "right")]]
-            right_action_items: [['delete'], ['content-save']]
+            right_action_items: [['delete', lambda x: root.delete_service_dialog()], ['content-save', lambda x: root.update_service()]]
         ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
