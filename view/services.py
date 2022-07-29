@@ -189,7 +189,8 @@ class ServicesMainWindow(MDScreen):
 
         self.parent.parent.switch_screen("Edit Services Screen", "left")
 
-class ServicesWindow(MDBoxLayout):
+class ServicesWindow(MDScreen):
+
     def switch_screen(self, screen_name, transition):
         self.ids.services_screen_manager.transition.direction = transition
         self.ids.services_screen_manager.current = screen_name

@@ -1,37 +1,43 @@
+from turtle import Screen
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
+from kivy.properties import StringProperty, ObjectProperty
 
-from kivy.lang import Builder
+# from kivy.lang import Builder
 
-import os
+# import os
 
-dirname = os.path.dirname(__file__)
+# dirname = os.path.dirname(__file__)
 
-Builder.load_file(os.path.join(dirname, "view/main.kv"))
+# Builder.load_file(os.path.join(dirname, "view/main.kv"))
 
-from view import dashboard, login, members, services, sections, extras
+from view import dashboard, login, members, services, extras, sections
+
+class ContentNavigationDrawer(MDBoxLayout):
+    pass
 
 class HomeWindow(MDScreen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-        self.ids.dashboard_screen.add_widget(dashboard.DashboardWindow())
-        self.ids.members_screen.add_widget(members.MembersWindow())
-        self.ids.services_screen.add_widget(services.ServicesWindow())
-        self.ids.extras_screen.add_widget(extras.ExtrasWindow())
-        #self.ids.sections_screen.add_widget(sections.SectionsWindow())
+    home_screen_manager = ObjectProperty()
+    home_nav_drawer = ObjectProperty()
 
 class MainWindow(MDBoxLayout):
+    home_window = ObjectProperty()
+
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(MainWindow, self).__init__(**kwargs)
 
         self.ids.login_screen.add_widget(login.LoginWindow())
-        self.ids.home_screen.add_widget(HomeWindow())
+        self.home_window.home_screen_manager.add_widget(dashboard.DashboardMainWindow())
+        self.home_window.home_screen_manager.add_widget(members.MembersWindow())
+        self.home_window.home_screen_manager.add_widget(services.ServicesWindow())
+        self.home_window.home_screen_manager.add_widget(extras.ExtrasWindow())
 
     def switch_screen(self, screen_name, transition):
-        self.ids.main_screen_manager.transition.direction = transition
-        self.ids.main_screen_manager.current = screen_name
+        self.home_window.home_screen_manager.transition.direction = transition
+        self.home_window.home_screen_manager.current = screen_name
+        self.home_window.home_nav_drawer.set_state('close')
+
 
 class MainApp(MDApp):
     def build(self):

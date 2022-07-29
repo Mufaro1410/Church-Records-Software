@@ -1,5 +1,4 @@
 from kivymd.app import MDApp
-from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.dialog import MDDialog
@@ -212,7 +211,8 @@ class MembersMainWindow(MDScreen):
         self.parent.get_screen("Edit Members Screen").ids.section_id.text = str(result['section_id'])
         self.parent.parent.switch_screen("Edit Members Screen", "left")
 
-class MembersWindow(MDBoxLayout):    
+class MembersWindow(MDScreen):
+
     def switch_screen(self, screen_name, transition):
         self.ids.members_screen_manager.transition.direction = transition
         self.ids.members_screen_manager.current = screen_name

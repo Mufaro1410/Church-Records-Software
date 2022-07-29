@@ -1,0 +1,79 @@
+#:kivy 2.0.0
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<MainWindow>:
+    home_window: home_screen
+    ScreenManager:
+        id: main_screen_manager
+        # transition: 
+        MDScreen:
+            id: login_screen
+            name: 'Login Screen'
+        HomeWindow:
+            id: home_screen
+            name: 'Home Screen'
+
+<HomeWindow>:
+    home_screen_manager: home_screen_manager
+    home_nav_drawer: home_nav_drawer
+    MDNavigationLayout:
+        ScreenManager:
+            id: home_screen_manager
+            # MDScreen:
+            #     id: dashboard_screen
+            #     name: 'Dashboard Screen'
+            #     # MDToolbar:
+            #     #     pos_hint: {"top": 1}
+            #     #     title: 'Inventory Management'
+            #     #     left_action_items: [['menu', lambda x: home_nav_drawer.set_state("toggle")]]
+            #     #     right_action_items: [['dots-vertical']]
+            #     #     elevation: 10
+            # MDScreen:
+            #     id: members_screen
+            #     name: 'Members Screen'
+            # MDScreen:
+            #     id: services_screen
+            #     name: 'Services Screen'
+            # MDScreen:
+            #     id: extras_screen
+            #     name: 'Extras Screen'
+        MDNavigationDrawer:
+            id: home_nav_drawer
+            radius: (0, 16, 16, 0) if self.anchor == "left" else (16, 0, 0, 16)
+            ContentNavigationDrawer:
+
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+    ThreeLineAvatarListItem:
+        text: "St Peters Church"
+        secondary_text: "1 Tongogara Road Palmerstone"
+        tertiary_text: "Mutare"
+        ImageLeftWidget:
+            source: "data/logo/kivy-icon-256.png"
+    # MDSeparator:
+    ScrollView:
+        MDList:
+            id: md_list
+            padding: "8dp"
+            OneLineIconListItem:
+                on_release: app.root.switch_screen('Dashboard Screen', 'left')
+                text: "Home"
+                IconLeftWidget:
+                    icon: "table"
+            OneLineIconListItem:
+                on_release: app.root.switch_screen('Members Screen', 'left')
+                text: "Members"
+                IconLeftWidget:
+                    icon: "table"
+            OneLineIconListItem:
+                on_release: app.root.switch_screen('Services Screen', 'left')
+                text: "Services"
+                IconLeftWidget:
+                    icon: "table"
+            OneLineIconListItem:
+                on_release: app.root.switch_screen('Extras Screen', 'left')
+                text: "Extras"
+                IconLeftWidget:
+                    icon: "table"

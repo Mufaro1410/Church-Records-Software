@@ -1,6 +1,7 @@
 #:kivy 2.0.0
 
 <MembersWindow>:
+    name: 'Members Screen'
     ScreenManager:
         id: members_screen_manager
         MembersMainWindow:
@@ -8,7 +9,7 @@
         EditMembersWindow:
 
 <MembersMainWindow>:
-    name: 'Members Screen'
+    name: 'Members Home Screen'
     MDBoxLayout:
         orientation: "vertical"
         MDToolbar:
@@ -16,7 +17,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            #left_action_items: [['arrow-left', lambda x: app.root.switch_screen("Home Screen", "right")]]
+            left_action_items: [['menu', lambda x: app.root.home_window.home_nav_drawer.set_state("toggle")]]
             right_action_items: [['magnify']]
         MDCard:
             orientation: "vertical"
@@ -67,7 +68,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Members Screen", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Members Home Screen", "right")]]
             right_action_items: [['content-save', lambda x: root.create_member()]]
         ScrollView:
             MDBoxLayout:
@@ -140,7 +141,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Members Screen", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Members Home Screen", "right")]]
             right_action_items: [['delete', lambda x: root.delete_member_dialog()], ['content-save', lambda x: root.update_member()]]
         ScrollView:
             MDBoxLayout:

@@ -1,18 +1,18 @@
 #:kivy 2.0.0
 
-<DashboardWindow>:
-    ScreenManager:
-        id: dashboard_screen_manager
-        DashboardMainWindow:
+# <DashboardWindow>:
+#     ScreenManager:
+#         id: dashboard_screen_manager
+#         DashboardMainWindow:
 
 <DashboardMainWindow>:
-    name: 'Dashboard Home'
+    name: 'Dashboard Screen'
     MDBoxLayout:
         orientation: "vertical"
         MDToolbar:
             pos_hint: {"top": 1}
             title: 'St Peters Church'
-            #sleft_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Home Screen", "right")]]
+            left_action_items: [['menu', lambda x: app.root.home_window.home_nav_drawer.set_state("toggle")]]
             right_action_items: [['dots-vertical']]
         ScrollView:
             MDBoxLayout:
@@ -133,6 +133,6 @@
                         MDFloatingActionButton:
                             icon: "plus"
                             anchor: "right"
-                            on_release: root.parent.parent.switch_screen("Add Users Screen", "left")
+                            on_release: root.switch_screen("Add Users Screen", "left")
                             pos_hint: {"center_x": .95, "center_y": .5}
                             #md_bg_color: app.theme_cls.primary_color

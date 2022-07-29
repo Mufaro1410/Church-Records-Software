@@ -1,6 +1,5 @@
 from kivymd.app import MDApp
-from kivymd.uix.boxlayout import MDBoxLayout
-#from kivymd.uix.screen import MDScreen
+from kivymd.uix.screen import MDScreen
 
 from kivy.lang import Builder
 from kivy.network.urlrequest import UrlRequest
@@ -13,7 +12,7 @@ dirname = os.path.dirname(__file__)
 Builder.load_file(os.path.join(dirname, "login.kv"))
 
 # LOGIN SCREEN
-class LoginWindow(MDBoxLayout):
+class LoginWindow(MDScreen):
     def proceed(self):
         self.parent.parent.current = 'Home Screen'
     '''

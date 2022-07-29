@@ -1,6 +1,8 @@
 #:kivy 2.0.0
 
 <ExtrasWindow>:
+    name: 'Extras Screen'
+
     ScreenManager:
         id: extras_screen_manager
         ExtrasMainWindow:
@@ -21,13 +23,13 @@
         EditUsersWindow:
 
 <ExtrasMainWindow>:
-    name: 'Extras Home'
+    name: 'Extras Home Screen'
     MDBoxLayout:
         orientation: "vertical"
         MDToolbar:
             pos_hint: {"top": 1}
             title: 'Extras'
-            #sleft_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Home Screen", "right")]]
+            left_action_items: [['menu', lambda x: app.root.home_window.home_nav_drawer.set_state("toggle")]]
             right_action_items: [['dots-vertical']]
         ScrollView:
             MDBoxLayout:
@@ -56,9 +58,9 @@
                             bold: True
                             adaptive_height: True
                         MDSeparator:
-                        ScrollView:
-                            MDList:
-                                id: sections_list
+                        #ScrollView:
+                        MDList:
+                            id: sections_list
                         MDFloatingActionButton:
                             icon: "plus"
                             anchor: "right"
@@ -191,7 +193,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['content-save', lambda x: root.create_section()]]
         ScrollView:
             MDBoxLayout:
@@ -248,7 +250,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['delete', lambda x: root.delete_section_dialog()], ['content-save', lambda x: root.update_section()]]
         ScrollView:
             MDBoxLayout:
@@ -305,7 +307,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['content-save']]
         ScrollView:
             MDBoxLayout:
@@ -347,7 +349,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['delete'], ['content-save']]
         ScrollView:
             MDBoxLayout:
@@ -393,7 +395,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['content-save']]
         ScrollView:
             MDBoxLayout:
@@ -435,7 +437,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['delete'], ['content-save']]
         ScrollView:
             MDBoxLayout:
@@ -481,7 +483,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['content-save']]
         ScrollView:
             MDBoxLayout:
@@ -523,7 +525,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['delete'], ['content-save']]
         ScrollView:
             MDBoxLayout:
@@ -569,7 +571,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['content-save']]
         ScrollView:
             MDBoxLayout:
@@ -617,7 +619,7 @@
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Extras Home", "right")]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Extras Home Screen', "right")]]
             right_action_items: [['delete'], ['content-save']]
         ScrollView:
             MDBoxLayout:

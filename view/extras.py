@@ -1,4 +1,5 @@
 from cgitb import text
+from logging import root
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
@@ -163,12 +164,14 @@ class ExtrasMainWindow(MDScreen):
         # UrlRequest(self.membership_url, on_success=self.getMemberships)
         # UrlRequest(self.maritalStatus_url, on_success=self.getMaritalStatus)
         # UrlRequest(self.users_url, on_success=self.getUsers)
+        self.getSections()
     
-    def getSections(self, request, result):
+    def getSections(self):
         '''loop through the dic to get the id name of the section
             and append the selected data/dictionary to the global data list'''
-        for i in range(1,17):
-            self.ids.sections_list.add_widget(OneLineListItem(text=f'Section {i}'))
+        print(self)
+        #for i in range(1,17):
+        #    self.ids.sections_list.add_widget(OneLineListItem(text=f'Section {i}'))
 
     def edit_section(self, name):
         '''function for searching a particular section in database'''
@@ -187,7 +190,8 @@ class ExtrasMainWindow(MDScreen):
         self.parent.get_screen("Edit Sections Screen").ids.number_of_families.text = result['number_of_families']
         self.parent.parent.switch_screen("Edit Sections Screen", "left")
 
-class ExtrasWindow(MDBoxLayout):
+class ExtrasWindow(MDScreen):
+
     def switch_screen(self, screen_name, transition):
         self.ids.extras_screen_manager.transition.direction = transition
         self.ids.extras_screen_manager.current = screen_name
