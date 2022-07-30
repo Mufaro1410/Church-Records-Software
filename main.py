@@ -12,7 +12,7 @@ from kivy.properties import StringProperty, ObjectProperty
 
 # Builder.load_file(os.path.join(dirname, "view/main.kv"))
 
-from view import dashboard, login, members, services, extras, sections
+from view import dashboard, login, members, services, extras
 
 class ContentNavigationDrawer(MDBoxLayout):
     pass

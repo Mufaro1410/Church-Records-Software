@@ -19,24 +19,6 @@
     MDNavigationLayout:
         ScreenManager:
             id: home_screen_manager
-            # MDScreen:
-            #     id: dashboard_screen
-            #     name: 'Dashboard Screen'
-            #     # MDToolbar:
-            #     #     pos_hint: {"top": 1}
-            #     #     title: 'Inventory Management'
-            #     #     left_action_items: [['menu', lambda x: home_nav_drawer.set_state("toggle")]]
-            #     #     right_action_items: [['dots-vertical']]
-            #     #     elevation: 10
-            # MDScreen:
-            #     id: members_screen
-            #     name: 'Members Screen'
-            # MDScreen:
-            #     id: services_screen
-            #     name: 'Services Screen'
-            # MDScreen:
-            #     id: extras_screen
-            #     name: 'Extras Screen'
         MDNavigationDrawer:
             id: home_nav_drawer
             radius: (0, 16, 16, 0) if self.anchor == "left" else (16, 0, 0, 16)
@@ -51,7 +33,7 @@
         secondary_text: "1 Tongogara Road Palmerstone"
         tertiary_text: "Mutare"
         ImageLeftWidget:
-            source: "data/logo/kivy-icon-256.png"
+            source: "resources/united-methodist-church-logo.png"
     # MDSeparator:
     ScrollView:
         MDList:

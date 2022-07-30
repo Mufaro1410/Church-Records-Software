@@ -1,24 +1,24 @@
 #:kivy 2.0.0
 
-<ServicesWindow>:
-    name: 'Services Screen'
-
+<SectionsWindow>:
+    name: 'Sections Screen'
+    sections_screen_manager: sections_screen_manager
     ScreenManager:
-        id: services_screen_manager
-        ServicesMainWindow:
-        AddServicesWindow:
-        EditServicesWindow:
+        id: sections_screen_manager
+        SectionsMainWindow:
+        AddSectionsWindow:
+        EditSectionsWindow:
 
-<ServicesMainWindow>:
-    name: 'Services Home Screen'
+<SectionsMainWindow>:
+    name: 'Sections Home Screen'
     MDBoxLayout:
         orientation: "vertical"
         MDToolbar:
-            title: "Services"
+            title: "Sections"
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['menu', lambda x: app.root.home_window.home_nav_drawer.set_state("toggle")]]
+            left_action_items: [['arrow-left', lambda x: root.parent.parent.parent.parent.switch_screen("Extras Home Screen", "right")]]
             # right_action_items: [['magnify']]
         MDCard:
             orientation: "vertical"
@@ -38,10 +38,10 @@
                     icon: 'magnify'
                 MDTextField:
                     id: search_field
-                    hint_text: 'Search Services'
-                    on_text: root.set_search_services(self.text, True)
+                    hint_text: 'Search Section'
+                    on_text: root.set_search_sections(self.text, True)
             RecycleView:
-                id: services_list
+                id: sections_list
                 key_viewclass: 'viewclass'
                 key_size: 'height'
                 #pos_hint:{'center_x': 0.5, 'center_y': 0.5}
@@ -56,21 +56,21 @@
         MDFloatingActionButton:
             icon: "plus"
             anchor: "right"
-            on_release: root.parent.parent.switch_screen("Add Services Screen", "left")
+            on_release: root.parent.parent.switch_screen("Add Sections Screen", "left")
             pos_hint: {"center_x": .95, "center_y": .5}
             #md_bg_color: app.theme_cls.primary_color
 
-<AddServicesWindow>:
-    name: 'Add Services Screen'
+<AddSectionsWindow>:
+    name: 'Add Sections Screen'
     MDBoxLayout:
         orientation: "vertical"
         MDToolbar:
-            title: "Add Service"
+            title: "Add Section"
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Services Home Screen", "right")]]
-            right_action_items: [['content-save', lambda x: root.create_service()]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Sections Home Screen', "right")]]
+            right_action_items: [['content-save', lambda x: root.create_section()]]
         ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
@@ -80,57 +80,54 @@
                 MDCard:
                     orientation: "vertical"
                     size_hint: .98, None
-                    height: services_details.height
+                    height: member_details.height
                     #focus_behavior: True
                     #ripple_behavior: True
                     pos_hint: {"center_x": .5, "center_y": .5}
                     radius: 12
                     MDBoxLayout:
-                        id: services_details
+                        id: member_details
                         orientation: "vertical"
                         spacing: "10dp"
                         adaptive_height: True
                         padding: "20dp", "20dp", "20dp", "20dp"
                         MDLabel:
-                            text: "Service Details"
+                            text: "Section Details"
                             theme_text_color: "Primary"
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
                         MDSeparator:
                         MDTextField:
-                            id: date
-                            hint_text: "Date"
+                            id: section_number
+                            hint_text: "Section Number"
                         MDTextField:
-                            id: preacher
-                            hint_text: "Preachor"
+                            id: area
+                            hint_text: "Area"
                         MDTextField:
-                            id: litegist_one
-                            hint_text: "Litegist 1"
+                            id: section_leader
+                            hint_text: "Section Leader - Member ID"
                         MDTextField:
-                            id: litegist_two
-                            hint_text: "Litegist 2"
+                            id: vice_section_leader
+                            hint_text: "Vice Section Leader - Member ID"
                         MDTextField:
-                            id: choir
-                            hint_text: "Choir"
+                            id: treasurer
+                            hint_text: "Treasurer - Member ID"
                         MDTextField:
-                            id: preaching_topic
-                            hint_text: "Preaching Topic"
-                        MDTextField:
-                            id: preaching_verses
-                            hint_text: "Preaching Verses"
+                            id: number_of_families
+                            hint_text: "Number of Families"
 
-<EditServicesWindow>:
-    name: 'Edit Services Screen'
+<EditSectionsWindow>:
+    name: 'Edit Sections Screen'
     MDBoxLayout:
         orientation: "vertical"
         MDToolbar:
-            title: "Edit Service"
+            title: "Edit Section"
             use_overflow: True
             elevation: 10
             pos_hint: {"top": 1}
-            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen("Services Home Screen", "right")]]
-            right_action_items: [['delete', lambda x: root.delete_service_dialog()], ['content-save', lambda x: root.update_service()]]
+            left_action_items: [['arrow-left', lambda x:root.parent.parent.switch_screen('Sections Home Screen', "right")]]
+            right_action_items: [['delete', lambda x: root.delete_section_dialog()], ['content-save', lambda x: root.update_section()]]
         ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
@@ -140,41 +137,39 @@
                 MDCard:
                     orientation: "vertical"
                     size_hint: .98, None
-                    height: services_details.height
+                    height: member_details.height
                     #focus_behavior: True
                     #ripple_behavior: True
                     pos_hint: {"center_x": .5, "center_y": .5}
                     radius: 12
                     MDBoxLayout:
-                        id: services_details
+                        id: member_details
                         orientation: "vertical"
                         spacing: "10dp"
                         adaptive_height: True
                         padding: "20dp", "20dp", "20dp", "20dp"
                         MDLabel:
-                            text: "Service Details"
+                            text: "Section Details"
                             theme_text_color: "Primary"
                             font_style: "H5"
                             bold: True
                             adaptive_height: True
+                        MDSeparator:
                         MDTextField:
-                            id: date
-                            hint_text: "Date"
+                            id: section_number
+                            hint_text: "Section Number"
                         MDTextField:
-                            id: preacher
-                            hint_text: "Preachor"
+                            id: area
+                            hint_text: "Area"
                         MDTextField:
-                            id: litegist_one
-                            hint_text: "Litegist 1"
+                            id: section_leader
+                            hint_text: "Section Leader - Member ID"
                         MDTextField:
-                            id: litegist_two
-                            hint_text: "Litegist 2"
+                            id: vice_section_leader
+                            hint_text: "Vice Section Leader - Member ID"
                         MDTextField:
-                            id: choir
-                            hint_text: "Choir"
+                            id: treasurer
+                            hint_text: "Treasurer - Member ID"
                         MDTextField:
-                            id: preaching_topic
-                            hint_text: "Preaching Topic"
-                        MDTextField:
-                            id: preaching_verses
-                            hint_text: "Preaching Verses"
+                            id: number_of_families
+                            hint_text: "Number of Families"
